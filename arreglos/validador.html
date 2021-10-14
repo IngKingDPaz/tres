@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title></title>
+</head>
+<body>
+<form>
+      <input type="text" name="" id="txt_nombre" onkeypress="validar()">
+      <input type="button" name="" onclick="validar()">
+</form>
+</body>
+</html>
+
+<script type="text/javascript">
+
+function validar(){
+         var reyner=document.getElementById('txt_nombre').value
+         var patron=/^[a-zA-Z]*$/
+// alert(reyner)
+// alert( typeof reyner)
+
+
+         if(reyner.search(patron) ) 
+         {alert("no valido caracteres")}
+         // else
+         // { alert("validos mayusculas y minusculas")}
+}
+
+</script>

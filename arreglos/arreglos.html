@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<input type="text" name="" id="txt_nombre" placeholder="nombre">
+<br><br>
+<input type="text" name="" id="txt_pass" placeholder="">
+<br><br>
+<input type="number" name="" id="txt_filtro" min=1 max=9 placeholder="filtro">
+<br><br>
+<input type="button" name="" id="bt_agregar" onclick="agregar()" value="agregar">
+<input type="button" name="" id="bt_filtar" onclick="invocarfiltro_apellido()" value="Filtrar Apellido">
+<input type="button" name="" id="bt_filtar" onclick="invocarfiltro_passw()" value="Filtrar Password">
+</body>
+</html>
+
+<script type="text/javascript">
+var nombres= [];//var nombres = new Array(10); 
+var filtrados_pw=[];
+console.log("cantidad elementos:" +nombres.length)	
+
+
+
+function agregar()
+{
+			var name=document.getElementById('txt_nombre').value
+			var pw=document.getElementById('txt_pass').value
+
+			let persona={"Nombre":name,
+						 "Pass":pw}
+			nombres.push(persona)
+			alert(nombres)
+			console.log(nombres)
+			console.log("cantidad elementos:" +nombres.length)	
+	
+
+
+}
+
+function agregar_validar_max_permitido()
+{
+	if(nombres.length<2)
+	{
+			var name=document.getElementById('txt_nombre').value
+			var pw=document.getElementById('txt_pass').value
+
+			let persona={"Nombre":name,
+						 "Pass":pw}
+			nombres.push(persona)
+
+			alert(nombres)
+			console.log(nombres)
+			console.log("cantidad elementos:" +nombres.length)	
+	}
+	else
+	{
+		alert('Maximo de Registros permitidos '+ nombres.length)
+		console.log('Maximo de Registros permitidos '+ nombres.length)
+
+	}
+
+}
+
+function invocarfiltro_apellido(){
+	filtrar_apellido(nombres)
+
+}
+
+function invocarfiltro_passw(){
+
+	var filtro_pw=document.getElementById('txt_filtro').value
+	filtrar_password(nombres,filtro_pw)
+
+}
+
+function filtrar_apellido(array_nombre)
+{
+	//if()
+	//var new_array=array_nombre.sort()//ordena alfabeticamente
+
+//	console.log("desde funcion filtar "+new_array)
+
+	function ap(x, y){
+	    if (x.Pass < y.Pass) {return -1;}
+	    if (x.Pass > y.Pass) {return 1;}
+	    return 0;
+	}
+
+	var s = array_nombre.sort(ap);
+	console.log(s);
+
+	var parte=s.slice(0,3)
+	console.log(parte);//coge una muestra del arreglo
+
+}
+
+
+function filtrar_password(array_nombre, v_filtro)
+{
+	//if()
+	//var new_array=array_nombre.sort()//ordena alfabeticamente
+
+//	console.log("desde funcion filtar "+new_array)
+// console.log(typeof v_filtro)
+// console.log("valor filtro "+v_filtro)
+			array_nombre.forEach(function (element){
+				
+							if(typeof element=="object")
+							{
+								// console.log(element.Nombre)
+								// console.log(element.Pass)
+								if(element.Pass.length==v_filtro)
+								{
+
+									filtrados_pw.push(element)
+								}
+								
+								
+							}
+						
+			})
+
+			console.log(filtrados_pw)
+
+	// const s_ = array_nombre.filter(x =>x=v_filtro);
+	// console.log("Array filtro pasword " +s_);
+
+	
+
+}
+
+module.exports.registros = registros;
+module.exports.filtrarPorContrasena = filtrarPorContrasena;
+module.exports.agregarRegistro = agregarRegistro;
+</script>
